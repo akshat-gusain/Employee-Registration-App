@@ -1,0 +1,106 @@
+﻿@model MyMvcApp.Models.LoginViewModel
+<div class="login-container">
+    <div class="login-content">
+        <h2>Login</h2>
+
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "loginForm" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <!-- Display error messages from server-side validation -->
+            @if (!ViewData.ModelState.IsValid)
+            {
+                foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <div class="error-message">@error.ErrorMessage</div>
+                }
+            }
+
+            <!-- Empty container to display error messages from API (client-side) -->
+            <div id="loginErrorMessage" class="error-message" style="display:none;"></div>
+
+            <div>
+                @Html.LabelFor(m => m.EmpEmail)
+                @Html.TextBoxFor(m => m.EmpEmail)
+                @Html.ValidationMessageFor(m => m.EmpEmail)
+            </div>
+            <div>
+                @Html.LabelFor(m => m.EmpPassword)
+                @Html.PasswordFor(m => m.EmpPassword)
+                @Html.ValidationMessageFor(m => m.EmpPassword)
+            </div>
+            <button type="submit" class="login-button">Login</button>
+        }
+
+        <div>
+            <button class="login-button" onclick="window.location='@Url.Action("Register", "Account")'">Register</button>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    /* Error Message Styling */
+    .error-message {
+        margin-top: 20px; /* Space above error message */
+        padding: 15px; /* Padding */
+        background-color: #f8d7da; /* Light red background */
+        color: #721c24; /* Dark red text */
+        border: 1px solid #f5c6cb; /* Border color */
+        border-radius: 5px; /* Rounded corners */
+        text-align: center; /* Center text */
+    }
+</style>
+
+
+<script>
+    document.getElementById("loginForm").addEventListener("submit", async function (event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        // Construct the payload to be sent to the API
+        const payload = {
+            EmpEmail: formData.get('EmpEmail'), // Make sure your input fields have these names
+            EmpPassword: formData.get('EmpPassword')
+        };
+
+        // Clear any previous error message
+        const errorMessageDiv = document.getElementById("loginErrorMessage");
+        errorMessageDiv.style.display = 'none';  // Hide the error message div initially
+        errorMessageDiv.innerHTML = "";  // Clear previous content
+
+        try {
+            const response = await fetch("https://localhost:7013/api/Registration/Login", {
+                method: 'POST',
+                body: JSON.stringify(payload),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            // Check response from API
+            if (response.ok) {
+                const jsonResponse = await response.json();
+                if (jsonResponse.statusCode === 200) {
+                    // Redirect on successful login
+                    window.location.href = '@Url.Action("Dashboard", "Account")';
+                } else {
+                    // Show error message once
+                    errorMessageDiv.style.display = 'block';
+                    errorMessageDiv.innerHTML = jsonResponse.statusMessage || "Invalid user.";
+                }
+            } else {
+                const errorText = await response.text();
+                // Show error message once
+                errorMessageDiv.style.display = 'block';
+                errorMessageDiv.innerHTML = errorText || "Invalid user.";
+            }
+        } catch (error) {
+            // Show error message once
+            errorMessageDiv.style.display = 'block';
+            errorMessageDiv.innerHTML = "An error occurred during login: " + error.message;
+        }
+    });
+</script>

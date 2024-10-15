@@ -1,0 +1,82 @@
+﻿@model MyMvcApp.Models.RegisterViewModel
+
+<div class="register-container">
+    <div class="register-content">
+        <h2>Register</h2>
+
+        <form id="registerForm" method="post" action="@Url.Action("Register", "Account")">
+            <div>
+                @Html.LabelFor(m => m.EmpName)
+                @Html.TextBoxFor(m => m.EmpName)
+                @Html.ValidationMessageFor(m => m.EmpName)
+            </div>
+
+            <div>
+                @Html.LabelFor(m => m.EmpEmail)
+                @Html.TextBoxFor(m => m.EmpEmail)
+                @Html.ValidationMessageFor(m => m.EmpEmail)
+            </div>
+
+            <div>
+                @Html.LabelFor(m => m.EmpPassword)
+                @Html.PasswordFor(m => m.EmpPassword)
+                @Html.ValidationMessageFor(m => m.EmpPassword)
+            </div>
+
+            <button type="submit" class="register-button">Register</button>
+        </form>
+
+        <div>
+            <button class="login-button" onclick="window.location='@Url.Action("Login", "Account")'">Login</button>
+        </div>
+
+        <!-- Success message display -->
+        <div id="successMessage" style="display: none;" class="success-message">
+            Registration successful ! <br> Redirecting to Dashboard...
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .success-message {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+        border-radius: 5px;
+        text-align: center;
+    }
+</style>
+
+<script>
+    document.getElementById("registerForm").addEventListener("submit", async function (event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        const form = event.target;
+
+        // Gather form data
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: formData
+            });
+
+            if (response.ok) {
+                document.getElementById("successMessage").style.display = "block"; // Show success message
+                setTimeout(() => {
+                    window.location.href = '@Url.Action("Login", "Account")'; // Redirect to login page
+                }, 2000); // Redirect after 2 seconds
+            } else {
+                const errorMessage = await response.text();
+                alert("Registration failed: " + errorMessage); // Show error message if failed
+            }
+        } catch (error) {
+            alert("An error occurred during registration.");
+        }
+    });
+</script>
+

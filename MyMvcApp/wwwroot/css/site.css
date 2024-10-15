@@ -1,0 +1,454 @@
+/* Dashboard Page Styles */
+
+/* Table Styling */
+.employee-list-heading {
+    margin-top: 30px; /* Add top margin to space the heading from the top */
+    margin-bottom: 30px;
+    text-align: center; /* Optional: Center align the heading */
+    font-size: 2rem; /* Optional: Adjust font size for better visibility */
+    font-weight: bold; /* Make the heading bold */
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+    .table th,
+    .table td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .table th {
+        background-color: #f1f1f1;
+        font-weight: bold;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f9f9f9;
+    }
+
+    .table td {
+        vertical-align: middle;
+    }
+
+/* Button Styling */
+
+/* General Button Styling */
+/* Edit Button Styling */
+.btn-edit {
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 1rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px; /* Consistent width */
+    height: 40px; /* Consistent height */
+    cursor: pointer;
+    box-sizing: border-box; /* Include padding in size calculation */
+    text-align: center;
+}
+
+    .btn-edit:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px); /* Lift effect on hover */
+    }
+
+/* Delete Button Styling */
+.btn-delete {
+    padding: 0.5rem 1rem;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 1rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px; /* Consistent width */
+    height: 40px; /* Consistent height */
+    cursor: pointer;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+    .btn-delete:hover {
+        background-color: #c82333;
+        transform: translateY(-2px);
+    }
+
+
+/* No Users Message */
+.table .no-users {
+    text-align: center;
+    font-style: italic;
+    color: #999;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .table th,
+    .table td {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Register Page Styles */
+.register-container {
+    height: 100vh; /* Full height of the viewport */
+    display: flex; /* Flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    background-color: #f8f9fa; /* Light background color */
+}
+
+.register-content {
+    width: 100%;
+    max-width: 400px; /* Maximum width of the form */
+    background-color: #fff; /* White background for the form */
+    padding: 40px; /* Padding around the form */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+}
+
+/* Success Message Styling */
+.success-message {
+    margin-top: 20px; /* Space above the message */
+    padding: 15px; /* Padding around the message */
+    background-color: #d4edda; /* Light green background */
+    color: #155724; /* Dark green text */
+    border: 1px solid #c3e6cb; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    text-align: center; /* Center text */
+}
+
+.register-content h2 {
+    margin-bottom: 30px; /* Space from top of the "Register" title */
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+/* Form Styling */
+form div {
+    margin-bottom: 20px; /* Space between form fields */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    }
+
+/* Button Styling */
+button[type="submit"],
+a.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px; /* Increased border-radius for modern look */
+    font-size: 1rem; /* Consistent font size */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for effect */
+    margin-right: 15px;
+    width: 100%; /* Full width buttons */
+    margin-top: 10px; /* Space between buttons */
+}
+
+    button[type="submit"]:hover,
+    a.btn:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px); /* Lift effect on hover */
+    }
+
+/* Login Button Styling */
+.login-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 5px; /* Increased border-radius for modern look */
+    font-size: 1rem; /* Consistent font size */
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for effect */
+    margin-top: 15px; /* Space above the button */
+    width: 100%; /* Full width button */
+}
+
+    .login-button:hover {
+        background-color: #5a6268;
+        transform: translateY(-2px); /* Lift effect on hover */
+    }
+
+/* Responsive Design */
+@media (max-width: 576px) {
+    .register-content {
+        padding: 20px; /* Less padding on smaller screens */
+    }
+
+    button[type="submit"],
+    a.btn {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px; /* Space below buttons */
+    }
+}
+
+/* Login Page Styles */
+.login-container {
+    height: 100vh; /* Full height of the viewport */
+    display: flex; /* Flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    background-color: #f8f9fa; /* Light background color */
+}
+
+.login-content {
+    width: 100%; /* Full width */
+    max-width: 400px; /* Maximum width of the form */
+    background-color: #fff; /* White background for the form */
+    padding: 40px; /* Padding around the form */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+}
+
+    .login-content h2 {
+        margin-bottom: 30px; /* Space from top of the "Login" title */
+        text-align: center; /* Center the title */
+        font-size: 1.8rem; /* Font size */
+        font-weight: 600; /* Font weight */
+    }
+
+/* Form Styling */
+form div {
+    margin-bottom: 20px; /* Space between form fields */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333; /* Label color */
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%; /* Full width of input fields */
+    padding: 10px; /* Padding */
+    border: 1px solid #ccc; /* Border style */
+    border-radius: 4px; /* Rounded corners */
+    box-sizing: border-box; /* Box model */
+    font-size: 1rem; /* Font size */
+}
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+        outline: none; /* Remove outline */
+        border-color: #007bff; /* Change border color on focus */
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.3); /* Shadow effect */
+    }
+
+/* Button Styling */
+button[type="submit"],
+.login-button {
+    display: inline-block; /* Inline block */
+    padding: 10px 20px; /* Padding */
+    background-color: #007bff; /* Button color */
+    color: white; /* Text color */
+    text-decoration: none; /* Remove underline */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1rem; /* Font size */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transition effects */
+    margin-top: 20px; /* Space above button */
+    width: 100%; /* Full width */
+}
+
+    button[type="submit"]:hover,
+    .login-button:hover {
+        background-color: #0056b3; /* Darker color on hover */
+        transform: translateY(-2px); /* Lift effect on hover */
+    }
+
+/* Validation Message */
+.field-validation-error {
+    color: #dc3545; /* Error color */
+    font-size: 0.875rem; /* Font size */
+    margin-top: 5px; /* Space above message */
+}
+
+/* Error Message */
+.error-message {
+    margin-top: 20px; /* Space above error message */
+    padding: 15px; /* Padding */
+    background-color: #f8d7da; /* Background color */
+    color: #721c24; /* Text color */
+    border: 1px solid #f5c6cb; /* Border style */
+    border-radius: 5px; /* Rounded corners */
+    text-align: center; /* Center text */
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+    .login-content {
+        padding: 20px; /* Less padding on smaller screens */
+    }
+
+    button[type="submit"],
+    .login-button {
+        width: 100%; /* Full width buttons */
+        margin-bottom: 10px; /* Space below buttons */
+    }
+}
+
+/* Edit Container */
+.edit-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-content {
+    width: 100%;
+    max-width: 400px; /* Maximum width of the form */
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+    .edit-content h1 {
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+/* Form Styling */
+form div {
+    margin-bottom: 15px; /* Space between fields */
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    input[type="email"]:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    }
+
+/* Button Styling */
+button[type="submit"] {
+    display: inline-block;
+    width: 100%; /* Full width for buttons */
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    margin-top: 15px; /* Space above button */
+}
+
+    button[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+/* Modal Styling */
+#successModal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+    #successModal p {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    #successModal button {
+        padding: 8px 15px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        #successModal button:hover {
+            background-color: #0056b3;
+        }
+
+/* Responsive Design */
+@media (max-width: 576px) {
+    .edit-content {
+        padding: 20px;
+    }
+
+    button[type="submit"] {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+}

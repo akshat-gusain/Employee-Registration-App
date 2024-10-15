@@ -1,0 +1,117 @@
+﻿@model MyMvcApp.Models.RegisterViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Employee</title>
+</head>
+<body>
+
+    <h1>Edit Employee</h1>
+    <div class="edit-container">
+        <div class="edit-content">
+            <h1>Edit Employee</h1>
+            <form asp-action="Edit" method="post" id="editForm">
+                <!-- Post action should be linked to the Edit action in AccountController -->
+                <div>
+                    <!-- Hidden field for employee ID -->
+                    <input type="hidden" asp-for="EmpId" />
+                </div>
+                <div>
+                    <!-- Text field for employee name bound to model -->
+                    <input type="text" asp-for="EmpName" id="empName" placeholder="Employee Name" class="form-control" required />
+                </div>
+                <div>
+                    <!-- Password field bound to model -->
+                    <input type="password" asp-for="EmpPassword" id="empPassword" placeholder="Password" class="form-control" required />
+                </div>
+                <div>
+                    <!-- Email field bound to model -->
+                    <input type="email" asp-for="EmpEmail" id="empEmail" placeholder="Email" class="form-control" required />
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+
+            <!-- Div for showing the success message after updating -->
+            <div id="updateSuccessMessage" style="display: none;" class="success-info">
+                User updated successfully! <br> Redirecting to dashboard...
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .success-info {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+
+    <script>
+        // Extracting the employee ID from the URL path
+        const pathSegments = window.location.pathname.split('/');
+        const empID = pathSegments[pathSegments.length - 1]; // Get the last segment (the employee ID)
+
+        console.log("Current URL:", window.location.href);
+        console.log("Employee ID from URL:", empID);
+
+        // Form submit event listener
+        document.getElementById("editForm").addEventListener("submit", async function (event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const empName = document.getElementById("empName").value;
+            const empPassword = document.getElementById("empPassword").value;
+            const empEmail = document.getElementById("empEmail").value;
+
+            const updateData = {
+                EmpName: empName,
+                EmpPassword: empPassword,
+                EmpEmail: empEmail
+            };
+
+            try {
+                // Ensure empID is defined before making the request
+                if (!empID) {
+                    alert('Employee ID not found in URL.');
+                    return;
+                }
+
+                const response = await fetch(`https://localhost:7039/api/Registration/UpdateRegistration/${empID}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(updateData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    // Show success message instead of alert
+                    const successMessageDiv = document.getElementById("updateSuccessMessage");
+                    successMessageDiv.style.display = "block";
+
+                    // After showing success message, redirect to dashboard after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = '/Account/Dashboard'; // Replace '/dashboard' with the actual path to your dashboard
+                    }, 2000);
+                } else {
+                    // Show error message in the console or handle it
+                    alert(result.statusMessage); // Show error message if not successful
+                }
+            } catch (error) {
+                console.error('Error updating registration:', error);
+                alert('An error occurred while updating the registration.');
+            }
+        });
+
+    </script>
+
+</body>
+</html>

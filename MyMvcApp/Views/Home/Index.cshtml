@@ -1,0 +1,44 @@
+﻿@* Welcome.cshtml *@
+@*
+    <div class="welcome-container">
+     <div class="welcome-content">
+         <h1>Welcome to MyMvcApp</h1>
+         <p>This is a sample project that demonstrates user registration, login, and dashboard functionalities using ASP.NET Core MVC and Web API.</p>
+         <p>You can register, login, and view your personalized dashboard once you are authenticated.</p>
+     </div>
+ </div>
+*@ 
+
+@{
+    ViewData["Title"] = "Welcome Page";
+}
+
+<h2>Welcome</h2>
+<button id="fetchUsersBtn">Fetch Users</button>
+
+<div id="usersList"></div>
+
+@section Scripts {
+    <script>
+        document.getElementById('fetchUsersBtn').onclick = function () {
+            fetch('https://localhost:7039/api/Registration/GetAllRegistrations') // Change the URL according to your setup
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Handle the data and display it
+                    const usersListDiv = document.getElementById('usersList');
+                    usersListDiv.innerHTML = ""; // Clear previous data
+                    data.forEach(user => {
+                        usersListDiv.innerHTML += `<p>${user.Name} - ${user.Email}</p>`;
+                    });
+                })
+                .catch(error => {
+                    console.error('There has been a problem with your fetch operation:', error);
+                });
+        };
+    </script>
+}
